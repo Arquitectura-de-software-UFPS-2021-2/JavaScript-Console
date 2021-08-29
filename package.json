@@ -1,0 +1,16 @@
+{
+    "name": "app-consola",
+    "version": "1.0.0",
+    "description": "Aplicación de consola para convertir archivos de Microsoft Office a formatos Open Sources - Arquitectura de Software UFPS",
+    "main": "index.js",
+    "scripts": {
+        "start": "node src/index.js"
+    },
+    "keywords": [],
+    "author": "Enmanuel Martínez, Camilo Obando, Brayam Caicedo, Jean Gómez",
+    "license": "ISC",
+    "dependencies": {
+        "inquire": "^0.4.8",
+        "inquirer": "^8.1.2"
+    }
+}

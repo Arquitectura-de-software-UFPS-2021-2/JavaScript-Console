@@ -5,8 +5,6 @@ const path = require("path")
 
 async function menu() {
 
-
-
     //Menú de las acciones que desea realizar el usuario
     const res_menu = await inquirer.prompt({
         type: "list",
@@ -74,8 +72,6 @@ async function menu() {
 
     const data = res.data
     base64_decodificar(data, ruta_destino_archivo)
-
-
 }
 menu()
 
@@ -85,7 +81,6 @@ function base64_codificar(path) {
     let base64data = buff.toString('base64');
     return base64data
 }
-
 
 function base64_decodificar(dataEnBase64, rutaDestino) {
     let stringBase64 = dataEnBase64.base64

@@ -10,6 +10,7 @@
     "author": "Enmanuel Martínez, Camilo Obando, Brayam Caicedo, Jean Gómez",
     "license": "ISC",
     "dependencies": {
+        "axios": "^0.21.1",
         "inquire": "^0.4.8",
         "inquirer": "^8.1.2"
     }

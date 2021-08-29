@@ -35,15 +35,6 @@ async function menu() {
     //Escribir la ruta origen del archivo
     const ruta_archivo = await inquirer.prompt({
         name: "ruta_archivo",
-        message: "Escribe la ruta donde se encuentra guardado el archivo (incluir el nombre del archivo con su extensión)"
-    })
-
-    //Escribir la ruta destino del archivo
-    const ruta_destino_archivo = await inquirer.prompt({
-        name: "ruta_destino_archivo",
-        message: "Escribe la ruta de la carpeta donde quieres que se guarde el archivo"
-    })
-=======
 const inquirer = require("inquirer")
 const axios = require("axios")
 const fs = require("fs")

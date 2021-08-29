@@ -31,68 +31,65 @@ async function menu() {
         return
     }
 
-    //Escribir la ruta del archivo
+    //Escribir la ruta origen del archivo
     const ruta_archivo = await inquirer.prompt({
         name: "ruta_archivo",
-        message: "Escribe la ruta del archivo"
+        message: "Escribe la ruta donde se encuentra guardado el archivo (incluir el nombre del archivo con su extensión)"
     })
 
+    //Escribir la ruta destino del archivo
+    const ruta_destino_archivo = await inquirer.prompt({
+        name: "ruta_destino_archivo",
+        message: "Escribe la ruta de la carpeta donde quieres que se guarde el archivo"
+    })
 
     // Codificar archivo a base64
     const archivoBase64 = await base64_codificar(ruta_archivo.ruta_archivo);
 
 
     //Petición a la API para convertir
-    let extensionDestino = ""
-    let extensionFuente = ""
+    let extencionDestino = ""
+    let extencionFuente = ""
 
     let arrayRuta = ruta_archivo.ruta_archivo.split(path.sep)
     let nombreArchivo = arrayRuta[arrayRuta.length - 1]
 
     if (choice === 1) {
-        extensionDestino = "ODT"
-        extensionFuente = "DOCX"
+        extencionDestino = "ODT"
+        extencionFuente = "DOCX"
     } else if (choice === 2) {
-        extensionDestino = "ODS"
-        extensionFuente = "XLSX"
+        extencionDestino = "ODS"
+        extencionFuente = "XLSX"
     } else if (choice === 3) {
-        extensionDestino = "ODP"
-        extensionFuente = "PPTX"
+        extencionDestino = "ODP"
+        extencionFuente = "PPTX"
     }
 
-
-
     const res = await axios.post('http://54.163.147.33:8080/convertir', {
-        "base64": archivoBase64,
-        "extencionDestino": extensionDestino,
-        "extencionFuente": extensionFuente,
-        "nombreArchivo": nombreArchivo
+        base64: archivoBase64,
+        extencionDestino,
+        extencionFuente,
+        nombreArchivo
     })
 
     const data = res.data
-    base64_decodificar(data)
+    base64_decodificar(data, ruta_destino_archivo)
 
 
 }
 menu()
 
+
 function base64_codificar(path) {
-    let binaryData = fs.readFileSync(path) // leyendo datos binarios del archivo
-    let base64String = new Buffer(binaryData).toString("base64") //convirtiendo datos binarios a string en base 64
-    return base64String
+    let buff = fs.readFileSync(path);
+    let base64data = buff.toString('base64');
+    return base64data
 }
 
 
-
-
-function base64_decodificar(dataEnBase64) {
+function base64_decodificar(dataEnBase64, rutaDestino) {
     let stringBase64 = dataEnBase64.base64
-    let rutaArchivo = "../archivos_convertidos/" + dataEnBase64.nombreArchivo
-    const file = fs.writeFile(dataEnBase64.nombreArchivo, stringBase64, { enconding: "base64" }, function(err) {
-        if (err) {
-            console.log(err)
-        } else {
-            console.log("archivo creado")
-        }
-    })
+    let rutaArchivo = path.join(rutaDestino.ruta_destino_archivo, dataEnBase64.nombreArchivo)
+    let buff = new Buffer(stringBase64, 'base64');
+    fs.writeFileSync(rutaArchivo, buff);
 }

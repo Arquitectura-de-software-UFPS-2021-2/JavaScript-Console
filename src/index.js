@@ -31,11 +31,27 @@ async function menu() {
 
         choice = get_user_option_number(res_menu)
 
-        // Validate if the user wants to exit the program
+        // Validate if the user wants to exit the program or want to convert a pdf
+
+        let res_menu_pdf = ""
 
         if (choice == 9) {
             console.log("Adios!");
             return
+        } else if(choice == 8) {
+            res_menu_pdf = await inquirer.prompt({
+                type: "list",
+                name: "choice_2",
+                message: "¿Qué quieres hacer?",
+                choices: [
+                    "1) Docx",
+                    "2) Odt",
+                    "3) Xlsx",
+                    "4) Ods",
+                    "5) Pptx",
+                    "6) Odp"
+                ]
+            })
         }
 
         // The user is prompted for the file source path
@@ -58,11 +74,11 @@ async function menu() {
 
         //Get file name
 
-        let file_name = get_file_name(file_source_path)
+        let file_name_with_extension = get_filename_with_extension(file_source_path)
 
         // Obtain the extensions according to the option provided by the user.
 
-        let extensions = get_extensions_convert_files(res_menu, choice)
+        let extensions = get_extensions_convert_files(res_menu, choice, file_source_path, res_menu_pdf)
 
         // API Request
 
@@ -70,7 +86,7 @@ async function menu() {
             "base64": fileBase64,
             "extencionFuente": extensions[0],
             "extencionDestino": extensions[1],
-            "nombreArchivo": file_name
+            "nombreArchivo": file_name_with_extension
         })
 
         // Decode the API response
@@ -87,16 +103,24 @@ function get_user_option_number(res_menu) {
     return parseInt(res_menu.choice_1.split(")")[0])
 }
 
-function get_file_name(file_source_path) {
+function get_filename_with_extension(file_source_path) {
     let arr_path = file_source_path.file_source_path.split(path.sep)
     return arr_path[arr_path.length - 1]
 }
 
-function get_extensions_convert_files(res_menu, choice) {
+function get_extensions_convert_files(res_menu, choice, file_source_path, res_menu_pdf) {
     arr = []
     if ((choice >= 1) && (choice <= 6)) {
         separate_response = res_menu.choice_1.split(" ")
         arr.push(separate_response[3].toUpperCase(), separate_response[5].toUpperCase())
+    } else if(choice == 7) {
+        extension_source = get_filename_with_extension(file_source_path).split(".")[1].toUpperCase()
+        extension_destination = "PDF"
+        arr.push(extension_source, extension_destination)
+    } else {
+        extension_source = "PDF"
+        extension_destination = res_menu_pdf.choice_2.split(")")[1].toUpperCase().replace(/\s/g, '')
+        arr.push(extension_source, extension_destination)
     }
     return arr
 }

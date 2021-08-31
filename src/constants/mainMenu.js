@@ -10,8 +10,7 @@ const mainMenu = {
 		"5) Documentos de pptx a odp",
 		"6) Documentos de odp a pptx",
 		"7) Documentos de docx odt xlsx ods pptx odp a pdf",
-		"8) Documentos PDF a cualquier otro formato",
-		"9) Salir",
+		"8) Salir",
 	],
 }
 

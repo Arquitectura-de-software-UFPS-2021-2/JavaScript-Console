@@ -4,7 +4,6 @@ const fs = require("fs")
 const path = require("path")
 const ora = require("ora")
 const mainMenu = require("./constants/mainMenu")
-const pdfMenu = require("./constants/pdfMenu")
 const getExtensionsConvertFiles = require("./utils/getExtensionsConvertFiles")
 const getFilenameWithExtension = require("./utils/getFileNameWithExtension")
 
@@ -20,15 +19,11 @@ async function main() {
 
         choice = get_user_option_number(res_menu)
 
-        // Validate if the user wants to exit the program or want to convert a pdf
+        // Validate if the user wants to exit the program
 
-        let res_menu_pdf = ""
-
-        if (choice == 9) {
+        if (choice == 8) {
             console.log("Adios!")
             return
-        } else if (choice == 8) {
-            res_menu_pdf = await inquirer.prompt(pdfMenu)
         }
 
         try {
@@ -60,8 +55,7 @@ async function main() {
             let extensions = getExtensionsConvertFiles(
                 res_menu,
                 choice,
-                file_source_path,
-                res_menu_pdf
+                file_source_path
             )
 
             // API Request
@@ -94,7 +88,7 @@ async function main() {
                 console.log("❌ Por favor, revisa la ruta de origen, recuerda que debes indicar en la ruta el nombre del archivo y su extención");
             }
         }
-    } while (choice != 9)
+    } while (choice != 8)
 }
 
 main()

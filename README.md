@@ -62,7 +62,7 @@ Este es un proyecto open-source y nos interesa que lo apoyes haciendo cualquier 
 
 ## Autores ✒️
 
-* **Brayam Caicedo** 
+* **Brayam Caicedo** -  [BrayamFlorez](https://github.com/BrayamFlorez)
 * **Camilo Obando** -  [camiloabrilth1999](https://github.com/camiloabrilth1999)
 * **Enmanuel Martínez** -  [enmanuelM9999](https://github.com/enmanuelM9999)
 * **Jean Gómez** - [jeanpierregomez](https://github.com/jeanpierregomez)

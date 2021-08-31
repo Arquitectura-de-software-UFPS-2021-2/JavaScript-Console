@@ -52,7 +52,7 @@ _Una vez ejecutado el proyecto, en la consola podremos ver el menú con todas la
 
 ## Construido con 🛠️
 
-* [Nodejs](http://www.dropwizard.io/1.0.2/docs/) - El framework más famoso de Nodejs
+* [Nodejs](http://www.dropwizard.io/1.0.2/docs/) - El framework más famoso de Javascript
 * [Axios](https://www.npmjs.com/package/axios) - Cliente HTTP basado en promesas
 * [Git](https://git-scm.com/) - Manejador de versiones
 

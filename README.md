@@ -10,10 +10,10 @@ _DoConver es una aplicación open-source con la cual puedes convertir archivos d
 _Antes de comenzar es necesario que cuentes con npm 6.0.0 y Node 14.0.0 o una versión superior, te recomendamos usar las versiones LTS ._
 Puedes comprobar tus versiones actuales de Node y npm con los siguientes comandos
 ```
-node --version
-v14.15.3
-npm --version
-6.14.9
+node -v
+v14.17.5
+npm -v
+6.14.14
 ```
 
 ### Instalación 🔧
@@ -36,9 +36,15 @@ _Espera a que se instalen todas las dependencias y.... ¡Disfruta!_ 🎉⌛
 
 ## Ejecutando la aplicación ⚙️
 
-_Una vez tenemos las dependencias instaladas, podremos ejecutarlo, para esto, debemos ejecutar el siguiente comando en nuestra terminal preferida._
+_Una vez tenemos las dependencias instaladas, podremos ejecutarlo, para esto, debemos ir a la carpeta donde se encuentra guardado el proyecto (Ej: /home/camilo/projects/JavaScript-Console/) y ejecutamos el siguiente comando en nuestra terminal preferida._
 ```
-npm start
+npm run start
+```
+
+_También podemos hacerlo a través del comando global node y la ruta del archivo._
+
+```
+node src/index.js
 ```
 
 _Una vez ejecutado el proyecto, en la consola podremos ver el menú con todas las interesantes opciones con las que contamos, elige una y haz las conversiones que necesites._  🎈🎉

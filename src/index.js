@@ -84,8 +84,8 @@ async function menu() {
 
         const res = await axios.post('http://54.163.147.33:8080/convertir', {
             "base64": fileBase64,
-            "extencionFuente": extensions[0],
-            "extencionDestino": extensions[1],
+            "extensionFuente": extensions[0],
+            "extensionDestino": extensions[1],
             "nombreArchivo": file_name_with_extension
         })
 
@@ -93,7 +93,7 @@ async function menu() {
 
         const data = res.data
         base64_decodificar(data, file_destination_path)
-        console.log("Archivo creado :)")
+        console.log("El archivo ha sido creado")
     } while (choice != 9);
 }
 
